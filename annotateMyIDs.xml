@@ -1,0 +1,66 @@
+<tool id="annotateMyIDs" name="annotateMyIDs" version="0.1">
+    <description>Will annotate a generic set of identifiers</description>
+    <requirements>
+        <requirement type="package" version="3.4.0">bioconductor-org.Hs.eg.db</requirement>
+    </requirements>
+    <stdio>
+        <regex match="Execution halted"
+               source="both"
+               level="fatal"
+               description="Execution halted." />
+        <regex match="Error in"
+               source="both"
+               level="fatal"
+               description="An undefined error occured, please check your input carefully and contact your administrator." />
+        <regex match="Fatal error"
+               source="both"
+               level="fatal"
+               description="An undefined error occured, please check your input carefully and contact your administrator." />
+    </stdio>
+    <command><![CDATA[
+        Rscript '$__tool_directory__'/annotateMyIDs.r --id_file '$id_file'
+        --out_tab '$out_tab'
+        --id_type '$id_type'
+        --organism '$organism'
+    ]]></command>
+    <inputs>
+        <param name="id_file" help="A tabular file with IDs in the first column." label="File with identifiers to be annotated" type="data" format="tabular" />
+        <param name="organism" type = "select" label="What organism?">
+          <option value="hs" selected="true">Human</option>
+          <option value="mm">Mouse</option>
+        </param>
+        <param name="id_type" type="select" label="What type of identifiers are in your file?">
+          <option value="ENSEMBL" selected="true">Ensembl</option>
+          <option value="ENTREZID">Entrez ID</option>
+          <option value="GO>"GO</option></option>
+          <option value="MAP">KEGG</option>
+          <option value="REFSEQ">RefSeq</option>
+          <option value="SYMBOL">Gene Symbol</option>
+        </param>
+       <param name="include_go" help="If this option is set to TRUE, GO IDs will be included in the output. This could make the table rather large as some genes may be contained in many GO terms"
+               label="Does the input ranked gene list have a header line?" type="boolean"/>
+       <param name="include_kegg" help="If this option is set to TRUE, KEGG IDs will be included in the output. This could make the table rather large as some genes may be contained in many GO terms"
+               label="Does the input ranked gene list have a header line?" type="boolean"/>
+
+    </inputs>
+    <outputs>
+
+        <data name="out_tab" format="tabular" label="Annotation for your IDs">
+
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="id_file" value="ids.tab" ftype="tabular"/>
+            <param name="id_type" value="SYMBOL"/>
+            <param name="organism" value="Hs"/>  
+            <output name="out_tab" file="out.tab" />
+        </test>
+    </tests>
+    <help>
+
+
+
+    </help>
+
+</tool>
