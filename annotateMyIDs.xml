@@ -32,7 +32,7 @@
         <param name="id_type" type="select" label="What type of identifiers are in your file?">
           <option value="ENSEMBL" selected="true">Ensembl</option>
           <option value="ENTREZID">Entrez ID</option>
-          <option value="GO>"GO</option></option>
+          <option value="GO">GO</option>
           <option value="MAP">KEGG</option>
           <option value="REFSEQ">RefSeq</option>
           <option value="SYMBOL">Gene Symbol</option>
