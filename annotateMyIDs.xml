@@ -1,4 +1,4 @@
-<tool id="annotateMyIDs" name="annotateMyIDs" version="0.1">
+<tool id="annotateMyIDs" name="annotateMyIDs" version="0.2">
     <description>Will annotate a generic set of identifiers</description>
     <requirements>
         <requirement type="package" version="3.4.0">bioconductor-org.Hs.eg.db</requirement>
@@ -21,6 +21,7 @@
         Rscript '$__tool_directory__'/annotateMyIDs.r --id_file '$id_file'
         --out_tab '$out_tab'
         --id_type '$id_type'
+        --file_has_header '$file_has_header'
         --organism '$organism'
         --include_go '$include_go'
         --include_kegg '$include_kegg'
@@ -39,6 +40,8 @@
           <option value="REFSEQ">RefSeq</option>
           <option value="SYMBOL">Gene Symbol</option>
         </param>
+        <param name="file_has_header" help="If this option is set to TRUE, the tool will assume that the ranked gene-list has a column heading and the gene names commence on the second line"
+               label="Does the input ranked gene list have a header line?" type="boolean"/>
        <param name="include_go" help="If this option is set to TRUE, GO IDs will be included in the output. This could make the table rather large as some genes may be contained in many GO terms"
                label="Include GO?" type="boolean"/>
        <param name="include_kegg" help="If this option is set to TRUE, KEGG IDs will be included in the output. This could make the table rather large as some genes may be contained in many GO terms"

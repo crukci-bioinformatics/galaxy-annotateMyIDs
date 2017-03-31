@@ -15,8 +15,8 @@ option_list <- list(
   make_option(c("-id_type","--id_type"),type="character",help="Type of the incoming IDs"),
   make_option(c("-organism","--organism"), type="character",help="Which organism the IDs belong to"),
   make_option(c("-include_go","--include_go"),type="logical",default=TRUE,help="if TRUE, include GO IDs in the output"),
-  make_option(c("-include_kegg","--include_kegg"),type="logical",default=TRUE,help="If TRUE, include KEGG pathways in the output")
-  
+  make_option(c("-include_kegg","--include_kegg"),type="logical",default=TRUE,help="If TRUE, include KEGG pathways in the output"),
+  make_option(c("-file_has_header","--file_has_header"),type="logical",default=TRUE,help="If this option is set to TRUE, the tool will assume that the ranked gene-list has a column heading and the gene names commence on the second line")
   
 )
 
@@ -30,7 +30,7 @@ id_type <- args$id_type
 organism <- args$organism
 include_go <- args$include_go
 include_kegg <- args$include_kegg
-
+file_has_header = args$file_has_header
 
 ## If testing locally, change to TRUE and arguments will be set below
 run_local <- FALSE
@@ -44,9 +44,10 @@ if (run_local) {
   organism <- "hs"
   include_go <- FALSE
   include_kegg <- FALSE
+  file_has_header <- FALSE
 }
 
-ids <- as.character(read.table(id_file)[,1])
+ids <- as.character(read.table(id_file)[,1],header=file_has_header)
 
 
 if(organism == "hs"){
