@@ -28,6 +28,8 @@ id_file <- args$id_file
 out_tab <- args$out_tab
 id_type <- args$id_type
 organism <- args$organism
+include_go <- args$include_go
+include_kegg <- args$include_kegg
 
 
 ## If testing locally, change to TRUE and arguments will be set below

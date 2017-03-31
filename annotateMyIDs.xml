@@ -22,6 +22,8 @@
         --out_tab '$out_tab'
         --id_type '$id_type'
         --organism '$organism'
+        --include_go '$include_go'
+        --include_kegg '$include_kegg'
     ]]></command>
     <inputs>
         <param name="id_file" help="A tabular file with IDs in the first column." label="File with identifiers to be annotated" type="data" format="tabular" />
@@ -38,9 +40,9 @@
           <option value="SYMBOL">Gene Symbol</option>
         </param>
        <param name="include_go" help="If this option is set to TRUE, GO IDs will be included in the output. This could make the table rather large as some genes may be contained in many GO terms"
-               label="Does the input ranked gene list have a header line?" type="boolean"/>
+               label="Include GO?" type="boolean"/>
        <param name="include_kegg" help="If this option is set to TRUE, KEGG IDs will be included in the output. This could make the table rather large as some genes may be contained in many GO terms"
-               label="Does the input ranked gene list have a header line?" type="boolean"/>
+               label="Include KEGG?" type="boolean"/>
 
     </inputs>
     <outputs>
